@@ -27,16 +27,13 @@ if st.button("Generate Ingredient List"):
                 if ingre and ingre.strip():
                     ingredients.append(ingre)
             if ingredients:
-                             
-                full = f"""
-                List all the ingredients in alphabetical order for this recipe "{recipe_name}":
-                {', '.join(ingredients)}
-                Sort the ingredients in alphabetical order and in a bullet list.
-        
-                """
-                response = model.generate_content(full)
-                             
-                st.subheader("Ingredients in Alphabetical Order:")
-                st.write(response.text)
+                ingredients.sort()             
+                full = f"Make a list with the ingredients:\n{'n '.join(ingredients)}"
+                try:
+                    response = model.generate_content(full)
+                    st.subheader("Ingredients in Alphabetical Order:")
+                    st.write(response.text)
+                except Exception as e:
+                    st.error(f"Error calling Gemini API: {e}")
             else:
                 st.warning("Cannot be sorted.")
