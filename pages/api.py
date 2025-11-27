@@ -22,16 +22,17 @@ if st.button("Generate Ingredient List"):
             ingredients = []
             for i in range(1,21):
                 ingre = meal.get(f"strIngredient{i}")
-                if ingre and ingre.strip():
-                    ingredients.append(ingre)
+            if ingredients:
                              
-        full = f"""
-        List all the ingredients in alphabetical order for this recipe "{user}":
-        {', '.join(ingredients)}
-        Sort the ingredients in alphabetical orrder and in a bullet list.
+                full = f"""
+                List all the ingredients in alphabetical order for this recipe "{user}":
+                {', '.join(ingredients)}
+                Sort the ingredients in alphabetical order and in a bullet list.
         
-        """
-        response = model.generate_content(full)
+                """
+                response = model.generate_content(full)
                              
-    st.subheader("Ingredients in Alphabetical Order:")
-    st.write(response.text)
+                st.subheader("Ingredients in Alphabetical Order:")
+                st.write(response.text)
+            else:
+                st.warning("Cannot be sorted.")
