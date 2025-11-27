@@ -7,6 +7,7 @@ genai.configure(api_key= key)
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 st.title("Chatbot Recipe")
+st.write("Type in the name of your recipe and it will tell you how to prepare and cook the ingredients to its perfect taste!")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
