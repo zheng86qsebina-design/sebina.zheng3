@@ -12,7 +12,7 @@ user = st.text_input("Enter the name of your suggested food recipe:")
 
 if st.button("Generate Ingredient List"):
     with st.spinner("Processing recipe..."):
-        url = f"https://www.themealdb.com/api/json/v1/1/filter.php?s={user}"
+        url = f"https://www.themealdb.com/api/json/v1/1/search.php?s={user}"
         data = requests.get(url).json()
         if data["meals"] is None:
             st.error(f"No recipe found with the name '{user}' or check the spelling.")
