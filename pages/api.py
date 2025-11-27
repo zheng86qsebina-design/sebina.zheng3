@@ -14,7 +14,10 @@ if st.button("Generate Ingredient List"):
     with st.spinner("Processing recipe..."):
         url = f"https://www.themealdb.com/api/json/v1/1/filter.php?c={user}"
         data = requests.get(url).json()
-        meal = data["meals"][0]
+        if data["meals"] is None:
+            st.error(f"No recipe found with the name '{user}' or check the spelling.")
+        else:
+            meal = data["meals"][0]
 
         ingredients = []
         for i in range(1,21):
