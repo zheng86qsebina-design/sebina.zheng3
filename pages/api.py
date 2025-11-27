@@ -3,7 +3,8 @@ import os
 import requests
 import streamlit as st
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+key = st.secrets["key"]
+genai.configure(api_key = key)
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 st.title("AI Recipe Shortcuts")
