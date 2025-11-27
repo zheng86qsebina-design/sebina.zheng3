@@ -12,18 +12,18 @@ user = st.text_input("Enter the name of your suggested food recipe:")
 
 if st.button("Generate Ingredient List"):
     with st.spinner("Processing recipe..."):
-        url = f"https://www.themealdb.com/api/json/v1/1/filter.php?c={user}"
+        url = f"https://www.themealdb.com/api/json/v1/1/filter.php?s={user}"
         data = requests.get(url).json()
         if data["meals"] is None:
             st.error(f"No recipe found with the name '{user}' or check the spelling.")
         else:
             meal = data["meals"][0]
 
-        ingredients = []
-        for i in range(1,21):
-            ingre = meal.get(f"strIngredient{i}")
-            if ingre and ingre.strip():
-                ingredients.append(ingre)
+            ingredients = []
+            for i in range(1,21):
+                ingre = meal.get(f"strIngredient{i}")
+                if ingre and ingre.strip():
+                    ingredients.append(ingre)
                              
         full = f"""
         List all the ingredients in alphabetical order for this recipe "{user}":
